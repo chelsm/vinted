@@ -13,9 +13,13 @@ router.get('/:id', async function (req, res, next) {
 });
 
 router.post('/', async function (req, res, next) {
-    // res.json(req.body);
     const user = createNewUser(req.body);
-    res.send(user);
+    res.json(user);
 });
+
+// router.put('/:id', async function (req, res, next) {
+//     const user = modifyUser(req.body);
+//     res.json(req.body);
+// });
 
 export default router;

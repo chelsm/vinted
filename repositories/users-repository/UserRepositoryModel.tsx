@@ -1,6 +1,7 @@
 let db = require ('../../config')
 
 export default interface UserModel {
+    id: number;
     firstName: string;
     lastName: string;
 }

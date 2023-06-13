@@ -41,3 +41,16 @@ export const createUser = async (user: UserModel) => {
     });
   });
 }
+
+// export const modifyUser = async (user: UserModel) => {
+//   return new Promise((resolve, reject) => {
+//     db.query("UPDATE users SET ? WHERE id = ?", [user, user.id], (error, results) => {
+//       if (error) {
+//         console.log("Erreur:", error);
+//         reject(error);
+//       } else {
+//         resolve(results);
+//       }
+//     });
+//   });
+// }
