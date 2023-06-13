@@ -1,15 +1,19 @@
 import express from "express";
 var router = express.Router();
-import searchUsers from "../../services/users/user-service";
+import {searchUsers, searchUserById} from "../../services/users/user-service";
 
 router.get('/', async function (req, res, next) {
     console.log('controller users');
-    // res.send('controller users')
-    // next();
-
     const users = await searchUsers();
-    // console.log('oui oui', users)
     res.send(users);
+    next();
+});
+
+router.get('/:id', async function (req, res, next) {
+    const user= await searchUserById(parseInt(req.params.id));
+    res.send(user);
+    next();
+
 });
 
 export default router;

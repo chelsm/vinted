@@ -1,8 +1,6 @@
-import { get } from 'http';
-import getAllUsers from '../../repositories/users-repository/UserRepository'
-import UserModelService from './user-model-service'
+import {getAllUsers, getUserById} from '../../repositories/users-repository/UserRepository'
 
-const searchUsers = async () => {
+export const searchUsers = async () => {
     try {
         const users = await getAllUsers();
         return users
@@ -11,4 +9,11 @@ const searchUsers = async () => {
     }
 }
 
-export default searchUsers;
+export const searchUserById = async (id: number) => {
+    try {
+        const user = await getUserById(id);
+        return user
+    } catch (err) {
+        throw err;
+    }
+}
