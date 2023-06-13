@@ -1,4 +1,9 @@
-import {getAllUsers, getUserById, createUser} from '../../repositories/users-repository/UserRepository'
+import {
+    getAllUsers,
+    getUserById,
+    createUser,
+    modifyUserById
+} from '../../repositories/users-repository/UserRepository'
 import UserModelService from './user-model-service'
 
 
@@ -23,6 +28,15 @@ export const searchUserById = async (id: number) => {
 export const createNewUser = async (user: UserModelService ) => {
     try {
         const newUser = await createUser(user);
+        return newUser;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export const modifyUser = async (id:number, user: UserModelService ) => {
+    try {
+        const newUser = await modifyUserById(id, user);
         return newUser;
     } catch (err) {
         throw err;
