@@ -1,15 +1,36 @@
 import express from "express";
 var router = express.Router();
-import searchUsers from "../../services/users/user-service";
+import {
+  searchUsers,
+  searchUserById,
+  createNewUser,
+  modifyUser,
+  deleteUser,
+} from "../../services/users/user-service";
 
-router.get('/', async function (req, res, next) {
-    console.log('controller users');
-    // res.send('controller users')
-    // next();
+router.get("/", async function (req, res, next) {
+  const users = await searchUsers();
+  res.send(users);
+});
 
-    const users = await searchUsers();
-    // console.log('oui oui', users)
-    res.send(users);
+router.get("/:id", async function (req, res, next) {
+  const user = await searchUserById(parseInt(req.params.id));
+  res.send(user);
+});
+
+router.post("/", async function (req, res, next) {
+  createNewUser(req.body);
+  res.send("user added");
+});
+
+router.put("/:id", async function (req, res, next) {
+  modifyUser(parseInt(req.params.id), req.body);
+  res.send("user modified");
+});
+
+router.delete("/:id", function (req, res, next) {
+  deleteUser(parseInt(req.params.id));
+  res.send("user deleted");
 });
 
 export default router;

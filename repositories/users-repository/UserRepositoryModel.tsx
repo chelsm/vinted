@@ -1,6 +1,6 @@
 let db = require ('../../config')
 
-export interface UserModel {
+export default interface UserModel {
     id: number;
     firstName: string;
     lastName: string;
@@ -11,5 +11,3 @@ const userSchema = new db.Schema({
     firstName: String,
     lastName: String
 });
-
-export default userSchema;
