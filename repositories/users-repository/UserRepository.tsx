@@ -54,3 +54,16 @@ export const modifyUserById = async (id:number, user: UserModel) => {
     });
   });
 }
+
+export const removeUserById = async (id:number) => {
+  return new Promise((resolve, reject) => {
+    db.query("DELETE FROM users WHERE id = ?", [id], (error, results) => {
+      if (error) {
+        console.log("Erreur:", error);
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}

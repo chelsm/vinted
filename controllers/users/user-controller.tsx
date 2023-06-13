@@ -5,6 +5,7 @@ import {
   searchUserById,
   createNewUser,
   modifyUser,
+  deleteUser,
 } from "../../services/users/user-service";
 
 router.get("/", async function (req, res, next) {
@@ -18,13 +19,18 @@ router.get("/:id", async function (req, res, next) {
 });
 
 router.post("/", async function (req, res, next) {
-  const user = createNewUser(req.body);
-  res.json(user);
+  createNewUser(req.body);
+  res.send("user added");
 });
 
 router.put("/:id", async function (req, res, next) {
-  const user = modifyUser(parseInt(req.params.id), req.body);
-  res.json(user);
+  modifyUser(parseInt(req.params.id), req.body);
+  res.send("user modified");
+});
+
+router.delete("/:id", function (req, res, next) {
+  deleteUser(parseInt(req.params.id));
+  res.send("user deleted");
 });
 
 export default router;

@@ -2,7 +2,8 @@ import {
     getAllUsers,
     getUserById,
     createUser,
-    modifyUserById
+    modifyUserById,
+    removeUserById
 } from '../../repositories/users-repository/UserRepository'
 import UserModelService from './user-model-service'
 
@@ -38,6 +39,15 @@ export const modifyUser = async (id:number, user: UserModelService ) => {
     try {
         const newUser = await modifyUserById(id, user);
         return newUser;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export const deleteUser = async (id:number) => {
+    try {
+        const user = await removeUserById(id);
+        return user;
     } catch (err) {
         throw err;
     }
